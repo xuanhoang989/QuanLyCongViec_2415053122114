@@ -16,19 +16,20 @@ class ChiTietCongViecActivity : AppCompatActivity() {
     private lateinit var btnChinhSua: Button
     private lateinit var btnQuayLai: Button
 
-    // Đăng ký Activity Result API để nhận kết quả chỉnh sửa trả về
+    private var congViec: CongViec? = null
+
     private val chinhSuaLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ) { result ->
         if (result.resultCode == Activity.RESULT_OK) {
             val data = result.data
-            val tenMoi = data?.getStringExtra("RESULT_TEN_CONG_VIEC") ?: ""
-            val moTaMoi = data?.getStringExtra("RESULT_MO_TA_CONG_VIEC") ?: ""
-
-            // Cập nhật lại TextView hiển thị
-            tvChiTietTen.text = tenMoi
-            tvChiTietMoTa.text = moTaMoi
-            Toast.makeText(this, "Đã cập nhật công việc!", Toast.LENGTH_SHORT).show()
+            @Suppress("DEPRECATION")
+            val congViecCapNhat = data?.getSerializableExtra("RESULT_CONG_VIEC") as? CongViec
+            if (congViecCapNhat != null) {
+                congViec = congViecCapNhat
+                hienThiThongTin()
+                Toast.makeText(this, "Đã cập nhật công việc!", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
@@ -41,24 +42,29 @@ class ChiTietCongViecActivity : AppCompatActivity() {
         btnChinhSua = findViewById(R.id.btnChinhSua)
         btnQuayLai = findViewById(R.id.btnQuayLai)
 
-        // Nhận dữ liệu truyền từ MainActivity
-        val tenCongViec = intent.getStringExtra("EXTRA_TEN_CONG_VIEC") ?: ""
-        val moTaCongViec = intent.getStringExtra("EXTRA_MO_TA_CONG_VIEC") ?: ""
+        // Nhận đối tượng CongViec từ MainActivity
+        @Suppress("DEPRECATION")
+        congViec = intent.getSerializableExtra("EXTRA_CONG_VIEC") as? CongViec
 
-        tvChiTietTen.text = tenCongViec
-        tvChiTietMoTa.text = moTaCongViec
+        hienThiThongTin()
 
-        // Bấm Chỉnh sửa: Gọi launcher mở màn hình ChinhSuaCongViecActivity
+        // Bấm Chỉnh sửa: Truyền đối tượng CongViec sang màn hình chỉnh sửa
         btnChinhSua.setOnClickListener {
             val intent = Intent(this, ChinhSuaCongViecActivity::class.java).apply {
-                putExtra("EXTRA_TEN_CONG_VIEC", tvChiTietTen.text.toString())
-                putExtra("EXTRA_MO_TA_CONG_VIEC", tvChiTietMoTa.text.toString())
+                putExtra("EXTRA_CONG_VIEC", congViec)
             }
             chinhSuaLauncher.launch(intent)
         }
 
         btnQuayLai.setOnClickListener {
             finish()
+        }
+    }
+
+    private fun hienThiThongTin() {
+        congViec?.let {
+            tvChiTietTen.text = it.tenCongViec
+            tvChiTietMoTa.text = it.moTa
         }
     }
 }

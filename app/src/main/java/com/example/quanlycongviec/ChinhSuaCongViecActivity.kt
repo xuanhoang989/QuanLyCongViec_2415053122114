@@ -13,30 +13,38 @@ class ChinhSuaCongViecActivity : AppCompatActivity() {
     private lateinit var edtChinhSuaMoTa: EditText
     private lateinit var btnLuuChinhSua: Button
     private lateinit var btnHuyChinhSua: Button
+    private var congViecHienTai: CongViec? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chinh_sua_cong_viec)
 
         edtChinhSuaTen = findViewById(R.id.edtChinhSuaTen)
-        edtChinhSuaMoTa = findViewById(R.id.edtChinhSuaMoTa)
+        edtChinhSuaMoTa = findViewById(R.id.edtMoTaCongViec ?: R.id.edtChinhSuaMoTa)
         btnLuuChinhSua = findViewById(R.id.btnLuuChinhSua)
         btnHuyChinhSua = findViewById(R.id.btnHuyChinhSua)
 
-        // Điền sẵn dữ liệu hiện tại để người dùng sửa
-        val tenHienTai = intent.getStringExtra("EXTRA_TEN_CONG_VIEC") ?: ""
-        val moTaHienTai = intent.getStringExtra("EXTRA_MO_TA_CONG_VIEC") ?: ""
-        edtChinhSuaTen.setText(tenHienTai)
-        edtChinhSuaMoTa.setText(moTaHienTai)
+        // Nhận đối tượng CongViec từ Intent
+        @Suppress("DEPRECATION")
+        congViecHienTai = intent.getSerializableExtra("EXTRA_CONG_VIEC") as? CongViec
 
-        // Khi bấm Lưu: Gửi dữ liệu mới về qua Intent setResult
+        congViecHienTai?.let {
+            edtChinhSuaTen.setText(it.tenCongViec)
+            edtChinhSuaMoTa.setText(it.moTa)
+        }
+
+        // Bấm Lưu: Cập nhật đối tượng và gửi trả về
         btnLuuChinhSua.setOnClickListener {
             val tenMoi = edtChinhSuaTen.text.toString().trim()
             val moTaMoi = edtChinhSuaMoTa.text.toString().trim()
 
+            congViecHienTai?.apply {
+                tenCongViec = tenMoi
+                moTa = moTaMoi
+            }
+
             val traVeIntent = Intent().apply {
-                putExtra("RESULT_TEN_CONG_VIEC", tenMoi)
-                putExtra("RESULT_MO_TA_CONG_VIEC", moTaMoi)
+                putExtra("RESULT_CONG_VIEC", congViecHienTai)
             }
             setResult(Activity.RESULT_OK, traVeIntent)
             finish()
