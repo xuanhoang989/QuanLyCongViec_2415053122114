@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="#F8F9FA">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <!-- 1. Text thông tin sinh viên -->
+        <TextView
+            android:id="@+id/tvThongTinSinhVien"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Họ tên: Đinh Xuân Hoàng\nMSSV: 2415053122114\nLớp HP: 24T1"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#1A237E"
+            android:padding="12dp"
+            android:background="#E8EAF6" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="QUẢN LÝ CÔNG VIỆC"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#212121" />
+
+        <!-- 2. Ô nhập tên công việc -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Tên công việc:"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/edtTenCongViec"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nhập tên công việc" />
+
+        <!-- 3. Ô nhập mô tả công việc -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Mô tả công việc:"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/edtMoTaCongViec"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lines="3"
+            android:gravity="top|start"
+            android:hint="Nhập mô tả chi tiết công việc" />
+
+        <!-- 4. Nút Tạo công việc -->
+        <Button
+            android:id="@+id/btnTaoCongViec"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="#2E7D32"
+            android:text="Tạo công việc" />
+
+        <!-- 5. Nút Xem danh sách công việc -->
+        <Button
+            android:id="@+id/btnXemDanhSach"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="#1565C0"
+            android:text="Xem danh sách công việc" />
+
+    </LinearLayout>
+</ScrollView>
