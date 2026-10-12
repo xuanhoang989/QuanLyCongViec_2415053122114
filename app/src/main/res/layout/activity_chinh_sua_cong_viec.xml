@@ -43,11 +43,18 @@
         android:hint="Nhập mô tả mới"
         android:lines="4" />
 
+    <CheckBox
+        android:id="@+id/cbChinhSuaHoanThanh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Đã hoàn thành công việc" />
+
     <Button
         android:id="@+id/btnLuuChinhSua"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="20dp"
         android:backgroundTint="#2E7D32"
         android:text="Lưu thay đổi" />
 

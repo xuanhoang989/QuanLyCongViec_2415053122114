@@ -18,7 +18,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="20dp"
         android:text="Tên công việc:"
         android:textColor="#616161"
         android:textSize="14sp" />
@@ -51,12 +51,39 @@
         android:textColor="#424242"
         android:textSize="16sp" />
 
-    <!-- Nút Chỉnh sửa yêu cầu ở Câu 3 -->
+    <!-- Hiển thị Trạng thái công việc -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Trạng thái:"
+        android:textColor="#616161"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/tvChiTietTrangThai"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Chưa hoàn thành"
+        android:textColor="#C62828"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <!-- Đánh dấu hoàn thành -->
+    <CheckBox
+        android:id="@+id/cbHoanThanh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Đánh dấu đã hoàn thành"
+        android:textSize="16sp" />
+
     <Button
         android:id="@+id/btnChinhSua"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="20dp"
         android:backgroundTint="#FB8C00"
         android:text="Chỉnh sửa công việc" />
 
