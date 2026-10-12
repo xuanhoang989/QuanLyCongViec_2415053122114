@@ -26,12 +26,18 @@ class MainActivity : AppCompatActivity() {
         btnTaoCongViec = findViewById(R.id.btnTaoCongViec)
         btnXemDanhSach = findViewById(R.id.btnXemDanhSach)
 
-        // Xử lý tạo công việc bằng cách khởi tạo đối tượng từ class CongViec
         btnTaoCongViec.setOnClickListener {
             val ten = edtTenCongViec.text.toString().trim()
             val moTa = edtMoTaCongViec.text.toString().trim()
 
-            // Tạo đối tượng từ class CongViec
+            // Kiểm tra không cho phép để trống tên công việc
+            if (ten.isEmpty()) {
+                edtTenCongViec.error = "Tên công việc không được để trống!"
+                Toast.makeText(this, "Vui lòng nhập tên công việc!", Toast.LENGTH_SHORT).show()
+                edtTenCongViec.requestFocus()
+                return@setOnClickListener
+            }
+
             val congViecMoi = CongViec(tenCongViec = ten, moTa = moTa)
 
             val intent = Intent(this, ChiTietCongViecActivity::class.java).apply {
