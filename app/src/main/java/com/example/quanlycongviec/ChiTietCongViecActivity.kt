@@ -16,6 +16,7 @@ class ChiTietCongViecActivity : AppCompatActivity() {
     private lateinit var tvChiTietTen: TextView
     private lateinit var tvChiTietMoTa: TextView
     private lateinit var tvChiTietTrangThai: TextView
+    private lateinit var tvSoLanChinhSua: TextView
     private lateinit var cbHoanThanh: CheckBox
     private lateinit var btnChinhSua: Button
     private lateinit var btnQuayLai: Button
@@ -32,8 +33,10 @@ class ChiTietCongViecActivity : AppCompatActivity() {
             if (congViecCapNhat != null) {
                 congViec = congViecCapNhat
                 hienThiThongTin()
-                Toast.makeText(this, "Đã cập nhật công việc!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Đã cập nhật công việc thành công!", Toast.LENGTH_SHORT).show()
             }
+        } else if (result.resultCode == Activity.RESULT_CANCELED) {
+            Toast.makeText(this, "Đã hủy chỉnh sửa!", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -44,6 +47,7 @@ class ChiTietCongViecActivity : AppCompatActivity() {
         tvChiTietTen = findViewById(R.id.tvChiTietTen)
         tvChiTietMoTa = findViewById(R.id.tvChiTietMoTa)
         tvChiTietTrangThai = findViewById(R.id.tvChiTietTrangThai)
+        tvSoLanChinhSua = findViewById(R.id.tvSoLanChinhSua)
         cbHoanThanh = findViewById(R.id.cbHoanThanh)
         btnChinhSua = findViewById(R.id.btnChinhSua)
         btnQuayLai = findViewById(R.id.btnQuayLai)
@@ -53,7 +57,6 @@ class ChiTietCongViecActivity : AppCompatActivity() {
 
         hienThiThongTin()
 
-        // Xử lý khi người dùng tích/bỏ tích CheckBox hoàn thành
         cbHoanThanh.setOnCheckedChangeListener { _, isChecked ->
             congViec?.trangThai = if (isChecked) "Đã hoàn thành" else "Chưa hoàn thành"
             capNhatGiaoDienTrangThai()
@@ -75,6 +78,7 @@ class ChiTietCongViecActivity : AppCompatActivity() {
         congViec?.let {
             tvChiTietTen.text = it.tenCongViec
             tvChiTietMoTa.text = it.moTa
+            tvSoLanChinhSua.text = "${it.soLanChinhSua} lần"
             cbHoanThanh.isChecked = (it.trangThai == "Đã hoàn thành")
             capNhatGiaoDienTrangThai()
         }
@@ -84,9 +88,9 @@ class ChiTietCongViecActivity : AppCompatActivity() {
         congViec?.let {
             tvChiTietTrangThai.text = it.trangThai
             if (it.trangThai == "Đã hoàn thành") {
-                tvChiTietTrangThai.setTextColor(Color.parseColor("#2E7D32")) // Màu xanh lá
+                tvChiTietTrangThai.setTextColor(Color.parseColor("#2E7D32"))
             } else {
-                tvChiTietTrangThai.setTextColor(Color.parseColor("#C62828")) // Màu đỏ
+                tvChiTietTrangThai.setTextColor(Color.parseColor("#C62828"))
             }
         }
     }

@@ -46,16 +46,16 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:background="#FFFFFF"
-        android:minHeight="80dp"
-        android:padding="12dp"
+        android:minHeight="70dp"
+        android:padding="10dp"
         android:textColor="#424242"
         android:textSize="16sp" />
 
-    <!-- Hiển thị Trạng thái công việc -->
+    <!-- Trạng thái -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="14dp"
         android:text="Trạng thái:"
         android:textColor="#616161"
         android:textSize="14sp" />
@@ -70,20 +70,38 @@
         android:textSize="16sp"
         android:textStyle="bold" />
 
-    <!-- Đánh dấu hoàn thành -->
+    <!-- Hiển thị số lần chỉnh sửa theo yêu cầu đề bổ sung -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:text="Số lần chỉnh sửa:"
+        android:textColor="#616161"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/tvSoLanChinhSua"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="0 lần"
+        android:textColor="#0D47A1"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
     <CheckBox
         android:id="@+id/cbHoanThanh"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="10dp"
         android:text="Đánh dấu đã hoàn thành"
-        android:textSize="16sp" />
+        android:textSize="15sp" />
 
     <Button
         android:id="@+id/btnChinhSua"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
         android:backgroundTint="#FB8C00"
         android:text="Chỉnh sửa công việc" />
 

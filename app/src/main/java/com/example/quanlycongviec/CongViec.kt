@@ -5,11 +5,11 @@ import java.io.Serializable
 data class CongViec(
     var tenCongViec: String,
     var moTa: String,
-    var trangThai: String = "Chưa hoàn thành"
+    var trangThai: String = "Chưa hoàn thành",
+    var soLanChinhSua: Int = 0
 ) : Serializable {
 
-    // Hàm trả về chuỗi thông tin công việc theo yêu cầu đề bài
     fun layThongTinChiTiet(): String {
-        return "Tên: $tenCongViec\nMô tả: $moTa\nTrạng thái: $trangThai"
+        return "Tên: $tenCongViec\nMô tả: $moTa\nTrạng thái: $trangThai\nSố lần sửa: $soLanChinhSua"
     }
 }
