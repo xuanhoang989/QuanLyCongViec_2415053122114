@@ -51,11 +51,20 @@
         android:textColor="#424242"
         android:textSize="16sp" />
 
+    <!-- Nút Chỉnh sửa yêu cầu ở Câu 3 -->
+    <Button
+        android:id="@+id/btnChinhSua"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="#FB8C00"
+        android:text="Chỉnh sửa công việc" />
+
     <Button
         android:id="@+id/btnQuayLai"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="8dp"
         android:backgroundTint="#757575"
         android:text="Quay Lại" />
 
