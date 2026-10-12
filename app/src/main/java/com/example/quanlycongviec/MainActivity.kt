@@ -26,14 +26,16 @@ class MainActivity : AppCompatActivity() {
         btnTaoCongViec = findViewById(R.id.btnTaoCongViec)
         btnXemDanhSach = findViewById(R.id.btnXemDanhSach)
 
-
+        // Xử lý tạo công việc bằng cách khởi tạo đối tượng từ class CongViec
         btnTaoCongViec.setOnClickListener {
             val ten = edtTenCongViec.text.toString().trim()
             val moTa = edtMoTaCongViec.text.toString().trim()
 
+            // Tạo đối tượng từ class CongViec
+            val congViecMoi = CongViec(tenCongViec = ten, moTa = moTa)
+
             val intent = Intent(this, ChiTietCongViecActivity::class.java).apply {
-                putExtra("EXTRA_TEN_CONG_VIEC", ten)
-                putExtra("EXTRA_MO_TA_CONG_VIEC", moTa)
+                putExtra("EXTRA_CONG_VIEC", congViecMoi)
             }
             startActivity(intent)
         }
