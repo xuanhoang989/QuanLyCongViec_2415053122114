@@ -1,20 +1,34 @@
 package com.example.quanlycongviec
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
+import android.widget.Button
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 
 class ChiTietCongViecActivity : AppCompatActivity() {
+
+    private lateinit var tvChiTietTen: TextView
+    private lateinit var tvChiTietMoTa: TextView
+    private lateinit var btnQuayLai: Button
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_chi_tiet_cong_viec)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+
+        tvChiTietTen = findViewById(R.id.tvChiTietTen)
+        tvChiTietMoTa = findViewById(R.id.tvChiTietMoTa)
+        btnQuayLai = findViewById(R.id.btnQuayLai)
+
+        // Nhận dữ liệu truyền từ MainActivity
+        val tenCongViec = intent.getStringExtra("EXTRA_TEN_CONG_VIEC") ?: ""
+        val moTaCongViec = intent.getStringExtra("EXTRA_MO_TA_CONG_VIEC") ?: ""
+
+        // Hiển thị dữ liệu lên giao diện
+        tvChiTietTen.text = tenCongViec
+        tvChiTietMoTa.text = moTaCongViec
+
+        btnQuayLai.setOnClickListener {
+            finish()
         }
     }
 }
